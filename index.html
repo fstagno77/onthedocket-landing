@@ -49,8 +49,37 @@
 
     <main>
         <!-- HERO SECTION -->
+        <!-- Mobile: stacked layout (title-image-title), no parallax -->
+        <!-- Desktop: parallax animation with sticky scroll -->
         <section id="hero" class="hero-container relative bg-white">
-            <div class="hero-sticky flex flex-col items-center justify-center relative bg-white">
+            <!-- MOBILE HERO (visible on small screens only) -->
+            <div class="hero-mobile md:hidden flex flex-col items-center pt-24 pb-6 px-4">
+                <!-- Title -->
+                <h1 class="font-display text-center text-text-primary hero-title-mobile mb-6">
+                    EXPERIENCE THE SUPREME COURT LIKE NEVER BEFORE
+                </h1>
+
+                <!-- Hero Image (static, full width) -->
+                <div class="hero-image-mobile w-full">
+                    <picture>
+                        <source
+                            type="image/webp"
+                            srcset="assets/image_hero-sm.webp 480w,
+                                    assets/image_hero-md.webp 800w"
+                            sizes="100vw">
+                        <img src="assets/image_hero-md.webp"
+                             alt="Supreme Court Justices illustration"
+                             class="w-full h-auto rounded-lg"
+                             fetchpriority="high"
+                             decoding="async"
+                             width="800"
+                             height="437">
+                    </picture>
+                </div>
+            </div>
+
+            <!-- DESKTOP HERO (visible on md+ screens, with parallax) -->
+            <div class="hero-sticky hidden md:flex flex-col items-center justify-center relative bg-white">
                 <!-- Top Title -->
                 <div class="hero-title-top hero-title-container absolute left-0 right-0 z-10 pointer-events-none top-[90px]">
                     <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
@@ -255,8 +284,8 @@
                 <h2 class="font-display section-title text-text-primary text-center mb-12 md:mb-16">THE TEAM</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
-                    <!-- Team Members List -->
-                    <div>
+                    <!-- Team Members List (order-2 on mobile so photo shows first) -->
+                    <div class="order-2 md:order-1">
                         <!-- Member 1 -->
                         <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/jerry" data-active="true">
                             <button class="w-full text-left py-5 sm:py-6">
@@ -310,8 +339,8 @@
                         </div>
                     </div>
 
-                    <!-- Team Photo -->
-                    <div class="mt-8 md:mt-0 md:sticky md:top-24">
+                    <!-- Team Photo (order-1 on mobile so it shows first/top) -->
+                    <div class="order-1 md:order-2 mt-0 mb-4 md:mb-0 md:mt-0 md:sticky md:top-24">
                         <div class="aspect-square w-full bg-gray-200 rounded-sm overflow-hidden">
                             <picture>
                                 <source id="team-photo-source" srcset="assets/jerry.webp" type="image/webp">

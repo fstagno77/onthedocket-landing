@@ -52,8 +52,38 @@ body {
     text-transform: uppercase;
 }
 
+/* Mobile hero title - smaller size */
+.hero-title-mobile {
+    font-size: clamp(36px, 10vw, 56px);
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+/* Mobile hero - no parallax, static layout */
+.hero-mobile {
+    min-height: auto;
+    background-color: var(--color-background);
+}
+
+.hero-image-mobile {
+    max-width: 100%;
+}
+
+.hero-image-mobile img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+/* Hero container - different height on mobile vs desktop */
 .hero-container {
-    height: 200vh;
+    height: auto; /* Mobile: auto height */
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        height: 200vh; /* Desktop: parallax height */
+    }
 }
 
 .hero-sticky {
