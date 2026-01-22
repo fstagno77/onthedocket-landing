@@ -78,21 +78,84 @@
     function initHeroParallax() {
         if (!DOM.heroContainer || !DOM.heroImage) return;
 
-        const updateParallax = () => {
-            const rect = DOM.heroContainer.getBoundingClientRect();
-            const scrollProgress = Math.max(0, Math.min(1,
-                -rect.top / (DOM.heroContainer.offsetHeight - window.innerHeight)
-            ));
-            const scale = 1 + scrollProgress * 2.5;
-            DOM.heroImage.style.transform = `scale3d(${scale},${scale},1)`;
-            state.parallaxRafId = null;
+        const heroImageWrapper = DOM.heroImageWrapper;
+        const heroSticky = document.querySelector('.hero-sticky');
+        const heroImageBox = document.querySelector('.hero-image-box');
+        const topTitle = document.querySelector('.hero-title-top');
+        const bottomTitle = document.querySelector('.hero-title-bottom');
+
+        if (!heroImageWrapper || !heroSticky) return;
+
+        // Easing functions
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+        const easeInQuad = (t) => t * t;
+        const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        // Cache initial dimensions on load/resize
+        let initialWidth, initialHeight, vw, vh;
+
+        const cacheInitialDimensions = () => {
+            vw = window.innerWidth;
+            vh = window.innerHeight;
+            // Initial image container size - smaller to not overlap titles
+            const maxWidth = Math.min(800, vw - 100); // Smaller initial size
+            initialWidth = maxWidth;
+            // Calculate height based on image aspect ratio (2238:1222)
+            initialHeight = initialWidth * (1222 / 2238);
         };
 
-        const adjustHeroForViewport = () => {
-            if (!DOM.heroImageWrapper || !DOM.heroImageContainer) return;
-            const isShort = window.innerHeight <= 900;
-            DOM.heroImageWrapper.style.top = isShort ? 'calc(50% + 10px)' : '50%';
-            DOM.heroImageContainer.style.maxWidth = isShort ? '1080px' : '1200px';
+        cacheInitialDimensions();
+
+        const updateParallax = () => {
+            const rect = DOM.heroContainer.getBoundingClientRect();
+            const totalScroll = DOM.heroContainer.offsetHeight - vh;
+            const scrollProgress = Math.max(0, Math.min(1, -rect.top / totalScroll));
+
+            /*
+             * Two-phase animation:
+             * Phase 1 (0-80%): Image expands from initial size to fullscreen
+             * Phase 2 (80-100%): Hold at fullscreen, then sticky releases naturally
+             */
+
+            // For width: go beyond viewport to ensure cover
+            const coverWidth = vh * (2238 / 1222);
+            const targetWidth = Math.max(vw, coverWidth);
+            const targetHeight = vh;
+
+            let currentWidth, currentHeight, borderRadius;
+
+            if (scrollProgress <= 0.8) {
+                // Phase 1: Expand (0-80% → 0-1 for expansion)
+                const expandProgress = scrollProgress / 0.8;
+                const p = easeOutCubic(expandProgress);
+
+                currentWidth = initialWidth + (targetWidth - initialWidth) * p;
+                currentHeight = initialHeight + (targetHeight - initialHeight) * p;
+                borderRadius = 8 * (1 - p);
+            } else {
+                // Phase 2: Hold at fullscreen
+                currentWidth = targetWidth;
+                currentHeight = targetHeight;
+                borderRadius = 0;
+            }
+
+            // Apply size to wrapper
+            heroImageWrapper.style.width = `${currentWidth}px`;
+            heroImageWrapper.style.height = `${currentHeight}px`;
+            heroImageWrapper.style.left = '50%';
+            heroImageWrapper.style.top = '50%';
+            heroImageWrapper.style.transform = 'translate(-50%, -50%)';
+
+            // Remove border radius progressively
+            if (heroImageBox) heroImageBox.style.borderRadius = `${borderRadius}px`;
+
+            // Fade out titles during expansion
+            const titleFadeProgress = Math.min(1, scrollProgress / 0.8);
+            const titleOpacity = 1 - easeInQuad(titleFadeProgress);
+            if (topTitle) topTitle.style.opacity = titleOpacity;
+            if (bottomTitle) bottomTitle.style.opacity = titleOpacity;
+
+            state.parallaxRafId = null;
         };
 
         window.addEventListener('scroll', () => {
@@ -100,10 +163,12 @@
             state.parallaxRafId = requestAnimationFrame(updateParallax);
         }, { passive: true });
 
-        window.addEventListener('resize', throttleRAF(adjustHeroForViewport), { passive: true });
+        window.addEventListener('resize', () => {
+            cacheInitialDimensions();
+            requestAnimationFrame(updateParallax);
+        }, { passive: true });
 
         updateParallax();
-        adjustHeroForViewport();
     }
 
     // ==================== TIMELINE ====================

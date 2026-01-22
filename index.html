@@ -52,7 +52,7 @@
         <section id="hero" class="hero-container relative bg-white">
             <div class="hero-sticky flex flex-col items-center justify-center relative bg-white">
                 <!-- Top Title -->
-                <div class="absolute left-0 right-0 z-10 pointer-events-none top-[90px]">
+                <div class="hero-title-top hero-title-container absolute left-0 right-0 z-10 pointer-events-none top-[90px]">
                     <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
                         <h1 class="font-display text-center text-text-primary lg:whitespace-nowrap hero-title">
                             EXPERIENCE THE SUPREME COURT
@@ -61,35 +61,33 @@
                 </div>
 
                 <!-- Hero Image -->
-                <div id="hero-image-wrapper" class="absolute z-20 w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div id="hero-image-container" class="mx-auto px-4 sm:px-6 md:px-12 lg:px-16 max-w-[1200px]">
-                        <div class="relative w-full overflow-hidden rounded-lg">
-                            <picture>
-                                <source
-                                    type="image/webp"
-                                    srcset="assets/image_hero-sm.webp 480w,
-                                            assets/image_hero-md.webp 800w,
-                                            assets/image_hero-lg.webp 1200w,
-                                            assets/image_hero.webp 2238w"
-                                    sizes="(max-width: 480px) 100vw,
-                                           (max-width: 768px) 100vw,
-                                           (max-width: 1200px) 90vw,
-                                           1200px">
-                                <img id="hero-image"
-                                     src="assets/image_hero.webp"
-                                     alt="Supreme Court Justices illustration"
-                                     class="parallax-image w-full h-auto block"
-                                     fetchpriority="high"
-                                     decoding="async"
-                                     width="2238"
-                                     height="1222">
-                            </picture>
-                        </div>
+                <div id="hero-image-wrapper" class="hero-image-wrapper">
+                    <div class="hero-image-box">
+                        <picture>
+                            <source
+                                type="image/webp"
+                                srcset="assets/image_hero-sm.webp 480w,
+                                        assets/image_hero-md.webp 800w,
+                                        assets/image_hero-lg.webp 1200w,
+                                        assets/image_hero.webp 2238w"
+                                sizes="(max-width: 480px) 100vw,
+                                       (max-width: 768px) 100vw,
+                                       (max-width: 1200px) 90vw,
+                                       1200px">
+                            <img id="hero-image"
+                                 src="assets/image_hero.webp"
+                                 alt="Supreme Court Justices illustration"
+                                 class="parallax-image"
+                                 fetchpriority="high"
+                                 decoding="async"
+                                 width="2238"
+                                 height="1222">
+                        </picture>
                     </div>
                 </div>
 
                 <!-- Bottom Title -->
-                <div class="absolute left-0 right-0 z-10 pointer-events-none bottom-[50px]">
+                <div class="hero-title-bottom hero-title-container absolute left-0 right-0 z-10 pointer-events-none bottom-[50px]">
                     <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
                         <h2 class="font-display text-center text-text-primary hero-title">
                             LIKE NEVER BEFORE
