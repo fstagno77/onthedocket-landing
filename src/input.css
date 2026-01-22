@@ -78,6 +78,7 @@ body {
 /* Hero container - different height on mobile vs desktop */
 .hero-container {
     height: auto; /* Mobile: auto height */
+    background-color: var(--color-background); /* White background */
 }
 
 @media (min-width: 768px) {
@@ -91,6 +92,7 @@ body {
     top: 0;
     height: 100vh;
     overflow: hidden;
+    background-color: var(--color-background); /* White background */
 }
 
 /* Hero image wrapper - JS controls size and position */
