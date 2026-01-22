@@ -17,8 +17,8 @@
     <link rel="preload" href="assets/image_hero.webp" as="image" type="image/webp" fetchpriority="high">
 
     <!-- Google Fonts - non-blocking load with display=swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"></noscript>
 
     <!-- Tailwind CSS (production build) -->
     <link rel="stylesheet" href="css/tailwind.css">
@@ -203,7 +203,7 @@
                         <div class="accordion-item" data-accordion>
                             <button class="accordion-trigger w-full py-6 md:py-8 lg:py-10 flex items-start justify-between text-left" aria-expanded="true">
                                 <div>
-                                    <h3 class="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase">Trump <em class="lowercase">v.</em> United States</h3>
+                                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600;">Trump <em style="text-transform: none; font-style: italic;">v.</em> United States</h3>
                                     <span class="text-text-secondary text-sm sm:text-base md:text-lg mt-1 block">2024</span>
                                 </div>
                                 <span class="accordion-icon flex-shrink-0 ml-4 mt-2">
@@ -229,7 +229,7 @@
                         <div class="accordion-item" data-accordion>
                             <button class="accordion-trigger w-full py-6 md:py-8 lg:py-10 flex items-start justify-between text-left" aria-expanded="false">
                                 <div>
-                                    <h3 class="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase">Students for Fair Admissions <em class="lowercase">v.</em> Harvard</h3>
+                                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600;">Students for Fair Admissions <em style="text-transform: none; font-style: italic;">v.</em> Harvard</h3>
                                     <span class="text-text-secondary text-sm sm:text-base md:text-lg mt-1 block">2023</span>
                                 </div>
                                 <span class="accordion-icon flex-shrink-0 ml-4 mt-2">
@@ -252,7 +252,7 @@
                         <div class="accordion-item border-b border-black/10" data-accordion>
                             <button class="accordion-trigger w-full py-6 md:py-8 lg:py-10 flex items-start justify-between text-left" aria-expanded="false">
                                 <div>
-                                    <h3 class="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase">Dobbs <em class="lowercase">v.</em> Jackson Women's Health Organization</h3>
+                                    <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 600;">Dobbs <em style="text-transform: none; font-style: italic;">v.</em> Jackson Women's Health Organization</h3>
                                     <span class="text-text-secondary text-sm sm:text-base md:text-lg mt-1 block">2022</span>
                                 </div>
                                 <span class="accordion-icon flex-shrink-0 ml-4 mt-2">
@@ -264,7 +264,7 @@
                             <div class="accordion-content">
                                 <div class="pb-6 md:pb-8 lg:pb-10 pr-12">
                                     <p class="text-text-primary text-base sm:text-lg md:text-xl leading-relaxed mb-4">
-                                        The Court ruled that the U.S. Constitution does not confer a right to abortion, overturning Roe <em class="lowercase">v.</em> Wade and Planned Parenthood <em class="lowercase">v.</em> Casey. The authority to regulate abortion was returned to the states and their elected representatives. Each state can now permit, restrict, or ban abortion as its citizens decide.
+                                        The Court ruled that the U.S. Constitution does not confer a right to abortion, overturning Roe <em>v.</em> Wade and Planned Parenthood <em>v.</em> Casey. The authority to regulate abortion was returned to the states and their elected representatives. Each state can now permit, restrict, or ban abortion as its citizens decide.
                                     </p>
                                     <span class="text-primary text-sm font-semibold uppercase">Coming Soon</span>
                                 </div>
@@ -299,13 +299,16 @@
                         <!-- Member 2 -->
                         <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/tim">
                             <button class="w-full text-left py-5 sm:py-6">
-                                <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Tim Johnson</h3>
+                                <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Timothy R. Johnson</h3>
                                 <p class="text-text-secondary text-sm sm:text-base md:text-lg">Academic Co-Lead, University of Minnesota</p>
                             </button>
                             <div class="team-content" style="max-height: 0; padding-bottom: 0;">
-                                <p class="text-text-primary text-base sm:text-lg leading-relaxed">
-                                    Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
+                                <p class="text-text-primary text-base sm:text-lg leading-relaxed mb-4">
+                                    Timothy R. Johnson is the Horace T. Morse Distinguished Teaching Professor of Political Science and Law (by courtesy) at the University of Minnesota and a leading scholar of the U.S. Supreme Court, specializing in oral arguments and judicial decision-making.
                                 </p>
+                                <a href="https://trjumn.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary text-sm font-medium hover:underline transition-all">
+                                    Visit Website<span class="ml-1">&rarr;</span>
+                                </a>
                             </div>
                         </div>
 
@@ -319,7 +322,7 @@
                                 <p class="text-text-primary text-base sm:text-lg leading-relaxed mb-4">
                                     Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
                                 </p>
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary text-sm font-medium hover:underline transition-all">
+                                <a href="https://www.spooler.fm/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary text-sm font-medium hover:underline transition-all">
                                     Visit Website<span class="ml-1">&rarr;</span>
                                 </a>
                             </div>
@@ -335,7 +338,7 @@
                                 <p class="text-text-primary text-base sm:text-lg leading-relaxed mb-4">
                                     Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
                                 </p>
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary text-sm font-medium hover:underline transition-all">
+                                <a href="https://idibgroup.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary text-sm font-medium hover:underline transition-all">
                                     Visit Website<span class="ml-1">&rarr;</span>
                                 </a>
                             </div>
