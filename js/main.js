@@ -97,11 +97,24 @@
         const cacheInitialDimensions = () => {
             vw = window.innerWidth;
             vh = window.innerHeight;
-            // Initial image container size - smaller to not overlap titles
-            const maxWidth = Math.min(800, vw - 100); // Smaller initial size
-            initialWidth = maxWidth;
-            // Calculate height based on image aspect ratio (2238:1222)
-            initialHeight = initialWidth * (1222 / 2238);
+            const aspectRatio = 2238 / 1222; // ~1.83
+
+            // Limit by viewport width (with padding)
+            const widthFromViewport = vw - 80;
+
+            // Always limit by height to keep space for titles
+            // Use different percentages based on screen height
+            let maxHeightPercent;
+            if (vh > 1000) {
+                maxHeightPercent = 0.65; // Tall screens (large monitors)
+            } else {
+                maxHeightPercent = 0.58; // Normal screens (MacBook etc)
+            }
+            const maxHeight = vh * maxHeightPercent;
+            const widthFromHeight = maxHeight * aspectRatio;
+
+            initialWidth = Math.max(300, Math.min(widthFromViewport, widthFromHeight));
+            initialHeight = initialWidth / aspectRatio;
         };
 
         cacheInitialDimensions();
@@ -143,7 +156,11 @@
             heroImageWrapper.style.width = `${currentWidth}px`;
             heroImageWrapper.style.height = `${currentHeight}px`;
             heroImageWrapper.style.left = '50%';
-            heroImageWrapper.style.top = '50%';
+
+            // Start slightly lower, move to center as it expands
+            const verticalOffset = 15 * (1 - (scrollProgress / 0.8)); // 15px offset that reduces to 0
+            const topOffset = Math.max(0, verticalOffset);
+            heroImageWrapper.style.top = `calc(50% + ${topOffset}px)`;
             heroImageWrapper.style.transform = 'translate(-50%, -50%)';
 
             // Remove border radius progressively
