@@ -7,56 +7,21 @@
     <meta name="keywords" content="Supreme Court, legal education, AI, video narratives, constitutional law">
     <title>On The Docket - Experience the Supreme Court Like Never Before</title>
 
-    <!-- Preconnect to external origins (reduce connection latency) -->
+    <!-- DNS Prefetch + Preconnect to external origins (reduce connection latency) -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
 
-    <!-- Preload LCP image with high priority -->
-    <link rel="preload" href="assets/image_hero.jpg" as="image" fetchpriority="high">
+    <!-- Preload LCP image with high priority (WebP for modern browsers) -->
+    <link rel="preload" href="assets/image_hero.webp" as="image" type="image/webp" fetchpriority="high">
 
-    <!-- Google Fonts (non-blocking with media swap) -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Google Fonts - non-blocking load with display=swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"></noscript>
 
-    <!-- Critical CSS (inline for fast first paint) -->
-    <style>
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1A1A1A;background:#FFF;line-height:1.625}
-        .font-display{font-family:'Bebas Neue',sans-serif}
-        .hero-container{height:300vh}
-        .hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
-        .parallax-image{will-change:transform;backface-visibility:hidden;transform-origin:center}
-        .header-transition{transition:transform .3s ease-in-out}
-        .header-hidden{transform:translateY(-100%)}
-    </style>
-
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: { DEFAULT: '#992222', hover: '#7a1b1b', foreground: '#FFFFFF' },
-                        text: { primary: '#1A1A1A', secondary: '#666666', tertiary: '#999999', muted: '#AAAAAA' },
-                        background: { DEFAULT: '#FFFFFF', alternate: '#F5F5F5', dark: '#1A1A1A' },
-                        border: { DEFAULT: 'rgba(0, 0, 0, 0.1)', input: '#E5E5E5', timeline: '#333333' }
-                    },
-                    fontFamily: {
-                        display: ['"Bebas Neue"', 'sans-serif'],
-                        body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif']
-                    },
-                    maxWidth: { 'container': '1400px' }
-                }
-            }
-        }
-    </script>
-
-    <!-- Non-critical CSS (loaded async) -->
-    <link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="css/styles.css"></noscript>
+    <!-- Tailwind CSS (production build) -->
+    <link rel="stylesheet" href="css/tailwind.css">
 </head>
 <body>
     <!-- HEADER -->
@@ -64,7 +29,10 @@
         <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
             <div class="flex items-center justify-between py-4 md:py-6">
                 <div class="h-8 md:h-10">
-                    <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-full w-auto" width="120" height="40" loading="eager">
+                    <picture>
+                        <source srcset="assets/logo.webp" type="image/webp">
+                        <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-full w-auto" width="120" height="40" loading="eager">
+                    </picture>
                 </div>
                 <nav class="hidden md:flex items-center gap-10">
                     <button onclick="scrollToSection('about')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">About</button>
@@ -96,7 +64,26 @@
                 <div id="hero-image-wrapper" class="absolute z-20 w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                     <div id="hero-image-container" class="mx-auto px-4 sm:px-6 md:px-12 lg:px-16 max-w-[1200px]">
                         <div class="relative w-full overflow-hidden rounded-lg">
-                            <img id="hero-image" src="assets/image_hero.jpg" alt="Supreme Court Justices illustration" class="parallax-image w-full h-auto block" fetchpriority="high" decoding="async" width="2238" height="1222">
+                            <picture>
+                                <source
+                                    type="image/webp"
+                                    srcset="assets/image_hero-sm.webp 480w,
+                                            assets/image_hero-md.webp 800w,
+                                            assets/image_hero-lg.webp 1200w,
+                                            assets/image_hero.webp 2238w"
+                                    sizes="(max-width: 480px) 100vw,
+                                           (max-width: 768px) 100vw,
+                                           (max-width: 1200px) 90vw,
+                                           1200px">
+                                <img id="hero-image"
+                                     src="assets/image_hero.webp"
+                                     alt="Supreme Court Justices illustration"
+                                     class="parallax-image w-full h-auto block"
+                                     fetchpriority="high"
+                                     decoding="async"
+                                     width="2238"
+                                     height="1222">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -273,7 +260,7 @@
                     <!-- Team Members List -->
                     <div>
                         <!-- Member 1 -->
-                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/jerry.png" data-active="true">
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/jerry" data-active="true">
                             <button class="w-full text-left py-5 sm:py-6">
                                 <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Jerry Goldman</h3>
                                 <p class="text-text-secondary text-sm sm:text-base md:text-lg">Oyez Project Founder, Professor Emeritus, Northwestern University</p>
@@ -286,7 +273,7 @@
                         </div>
 
                         <!-- Member 2 -->
-                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/tim.png">
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/tim">
                             <button class="w-full text-left py-5 sm:py-6">
                                 <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Tim Johnson</h3>
                                 <p class="text-text-secondary text-sm sm:text-base md:text-lg">Academic Co-Lead, University of Minnesota</p>
@@ -299,7 +286,7 @@
                         </div>
 
                         <!-- Member 3 -->
-                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/spooler.png">
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/spooler">
                             <button class="w-full text-left py-5 sm:py-6">
                                 <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Spooler</h3>
                                 <p class="text-text-secondary text-sm sm:text-base md:text-lg">Technical Lead</p>
@@ -312,7 +299,7 @@
                         </div>
 
                         <!-- Member 4 -->
-                        <div class="team-member border-t border-b border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/idib.png">
+                        <div class="team-member border-t border-b border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/idib">
                             <button class="w-full text-left py-5 sm:py-6">
                                 <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Idib Group</h3>
                                 <p class="text-text-secondary text-sm sm:text-base md:text-lg">Experience Design</p>
@@ -328,7 +315,10 @@
                     <!-- Team Photo -->
                     <div class="mt-8 md:mt-0 md:sticky md:top-24">
                         <div class="aspect-square w-full bg-gray-200 rounded-sm overflow-hidden">
-                            <img id="team-photo" src="assets/jerry.png" alt="Jerry Goldman" class="w-full h-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" width="500" height="500">
+                            <picture>
+                                <source id="team-photo-source" srcset="assets/jerry.webp" type="image/webp">
+                                <img id="team-photo" src="assets/jerry.png" alt="Jerry Goldman" class="w-full h-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" width="500" height="500">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -371,7 +361,10 @@
             <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-6 md:py-8">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div class="order-2 md:order-1">
-                        <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-6 md:h-8" width="96" height="32" loading="lazy">
+                        <picture>
+                            <source srcset="assets/logo.webp" type="image/webp">
+                            <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-6 md:h-8" width="96" height="32" loading="lazy">
+                        </picture>
                     </div>
 
                     <nav class="order-1 md:order-2 flex items-center gap-6 md:gap-8">

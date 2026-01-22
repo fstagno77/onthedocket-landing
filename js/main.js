@@ -14,6 +14,7 @@
         heroImageWrapper: document.getElementById('hero-image-wrapper'),
         heroImageContainer: document.getElementById('hero-image-container'),
         teamPhoto: document.getElementById('team-photo'),
+        teamPhotoSource: document.getElementById('team-photo-source'),
         newsletterForm: document.getElementById('newsletter-form'),
         emailInput: document.getElementById('email-input'),
         emailError: document.getElementById('email-error'),
@@ -201,10 +202,10 @@
         if (!members.length || !DOM.teamPhoto) return;
 
         const MEMBER_NAMES = {
-            'assets/jerry.png': 'Jerry Goldman',
-            'assets/tim.png': 'Tim Johnson',
-            'assets/spooler.png': 'Spooler',
-            'assets/idib.png': 'Idib Group'
+            'assets/jerry': 'Jerry Goldman',
+            'assets/tim': 'Tim Johnson',
+            'assets/spooler': 'Spooler',
+            'assets/idib': 'Idib Group'
         };
 
         members.forEach(member => {
@@ -219,13 +220,16 @@
                     return;
                 }
 
-                const newImage = this.getAttribute('data-image');
+                const newImageBase = this.getAttribute('data-image');
 
-                // Fade transition
+                // Fade transition with WebP support
                 DOM.teamPhoto.style.opacity = '0';
                 setTimeout(() => {
-                    DOM.teamPhoto.src = newImage;
-                    DOM.teamPhoto.alt = MEMBER_NAMES[newImage] || 'Team member';
+                    if (DOM.teamPhotoSource) {
+                        DOM.teamPhotoSource.srcset = newImageBase + '.webp';
+                    }
+                    DOM.teamPhoto.src = newImageBase + '.png';
+                    DOM.teamPhoto.alt = MEMBER_NAMES[newImageBase] || 'Team member';
                     DOM.teamPhoto.style.opacity = '1';
                 }, 150);
 
