@@ -166,13 +166,16 @@ body {
 }
 
 .timeline-dot {
-    transition: transform 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out;
+    transition: background-color 0.3s ease-out, border-color 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out, margin 0.3s ease-out;
 }
 
 .timeline-dot.active {
     background-color: #992222 !important;
     border-color: #992222 !important;
-    transform: translateX(-50%) scale(1.5);
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-top: -0.25rem;
+    margin-left: 0;
 }
 
 /* Team section */
