@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="On The Docket - Experience the Supreme Court like never before. We transform audio recordings into compelling video narratives using AI technology.">
+    <meta name="keywords" content="Supreme Court, legal education, AI, video narratives, constitutional law">
+    <title>On The Docket - Experience the Supreme Court Like Never Before</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#992222',
+                            hover: '#7a1b1b',
+                            foreground: '#FFFFFF'
+                        },
+                        text: {
+                            primary: '#1A1A1A',
+                            secondary: '#666666',
+                            tertiary: '#999999',
+                            muted: '#AAAAAA'
+                        },
+                        background: {
+                            DEFAULT: '#FFFFFF',
+                            alternate: '#F5F5F5',
+                            dark: '#1A1A1A'
+                        },
+                        border: {
+                            DEFAULT: 'rgba(0, 0, 0, 0.1)',
+                            input: '#E5E5E5',
+                            timeline: '#333333'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif']
+                    },
+                    maxWidth: {
+                        'container': '1400px'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #1A1A1A;
+            background-color: #FFFFFF;
+            line-height: 1.625;
+        }
+
+        /* Display font for titles */
+        .font-display {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        /* Hero title fluid typography */
+        .hero-title {
+            font-size: clamp(48px, 8.89vw, 128px);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        /* Section title sizing */
+        .section-title {
+            font-size: clamp(48px, 8vw, 128px);
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        /* Header transitions */
+        .header-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .header-hidden {
+            transform: translateY(-100%);
+        }
+
+        /* Accordion transitions */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        }
+
+        .accordion-content.open {
+            max-height: 500px;
+        }
+
+        /* Hero parallax container */
+        .hero-container {
+            height: 300vh;
+        }
+
+        .hero-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Hardware acceleration for parallax - GPU optimization */
+        .parallax-image {
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-origin: center center;
+        }
+
+        /* Timeline dot active state */
+        .timeline-dot-active {
+            transform: scale(1.25);
+        }
+
+        /* Focus styles */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #992222;
+            outline-offset: 2px;
+        }
+
+        /* Smooth fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Stagger animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        /* Timeline step animations */
+        .timeline-step {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline-step.from-left {
+            transform: translateX(-50px);
+        }
+
+        .timeline-step.from-right {
+            transform: translateX(50px);
+        }
+
+        .timeline-step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Timeline dot states */
+        .timeline-dot {
+            transition: all 0.3s ease-out;
+        }
+
+        .timeline-dot.active {
+            background-color: #992222 !important;
+            border-color: #992222 !important;
+            transform: translateX(-50%) scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white header-transition">
+        <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+            <div class="flex items-center justify-between py-4 md:py-6">
+                <!-- Logo (non-clickable) -->
+                <div class="h-8 md:h-10">
+                    <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-full w-auto">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-10">
+                    <button onclick="scrollToSection('about')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">About</button>
+                    <button onclick="scrollToSection('cases')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Cases</button>
+                    <button onclick="scrollToSection('team')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Team</button>
+                </nav>
+
+                <!-- CTA Button (Always visible) -->
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-2.5 bg-[#992222] text-white text-xs sm:text-sm font-normal rounded-md hover:bg-[#7a1b1b] transition-colors whitespace-nowrap">
+                    Watch on YouTube
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== HERO SECTION ==================== -->
+        <!-- Outer Container: 300vh provides scroll "runway" for parallax effect -->
+        <section id="hero" class="hero-container relative bg-white">
+            <!-- Sticky Container: Stays fixed during scroll, contains all hero content -->
+            <div class="hero-sticky flex flex-col items-center justify-center relative bg-white">
+
+                <!-- Top Title - Position Absolute, z-10 -->
+                <div class="absolute left-0 right-0 z-10 pointer-events-none" style="top: 90px;">
+                    <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                        <h1 class="font-display text-center text-text-primary lg:whitespace-nowrap"
+                            style="font-size: clamp(48px, 8.89vw, 128px); line-height: 0.9;">
+                            EXPERIENCE THE SUPREME COURT
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Hero Image Container - Position Absolute, z-20, centered with transform -->
+                <div id="hero-image-wrapper"
+                     class="absolute z-20"
+                     style="left: 50%; top: 50%; transform: translate(-50%, -50%); transform-origin: center center; width: 100%;">
+                    <div class="mx-auto px-4 sm:px-6 md:px-12 lg:px-16" id="hero-image-container" style="max-width: 1200px;">
+                        <div class="relative w-full overflow-hidden rounded-lg">
+                            <img id="hero-image"
+                                 src="assets/image_hero.jpg"
+                                 alt="Supreme Court Justices illustration"
+                                 class="parallax-image w-full h-auto block"
+                                 style="will-change: transform; backface-visibility: hidden;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Title - Position Absolute, z-10 -->
+                <div class="absolute left-0 right-0 z-10 pointer-events-none" style="bottom: 50px;">
+                    <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                        <h2 class="font-display text-center text-text-primary"
+                            style="font-size: clamp(48px, 8.89vw, 128px); line-height: 0.9;">
+                            LIKE NEVER BEFORE
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT / MISSION SECTION ==================== -->
+        <section id="about" class="py-16 sm:py-20 md:py-32 lg:py-40 bg-white">
+            <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="font-display section-title text-text-primary mb-8 md:mb-12 lg:mb-16">
+                        OUR MISSION
+                    </h2>
+                    <p class="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed mb-6">
+                        On The Docket democratizes access to Supreme Court proceedings by transforming audio
+                        recordings into compelling video narratives. Using advanced AI technology, we create visual
+                        experiences that make landmark cases accessible and engaging for students, educators, and
+                        citizens.
+                    </p>
+                    <p class="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed">
+                        Our platform bridges the gap between constitutional scholarship and public understanding,
+                        ensuring that pivotal moments in American jurisprudence are preserved and comprehensible
+                        for generations to come.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== HOW IT WORKS SECTION ==================== -->
+        <section id="how-it-works" class="py-16 sm:py-20 md:py-32 lg:py-40 bg-background-dark">
+            <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                <!-- Section Title -->
+                <h2 class="font-display text-[48px] sm:text-[72px] md:text-[96px] lg:text-[128px] leading-[0.9] text-white text-center uppercase">
+                    HOW IT WORKS
+                </h2>
+                <!-- Subtitle -->
+                <p class="text-text-muted text-base sm:text-lg md:text-xl text-center mt-4 mb-16 md:mb-24 lg:mb-32">
+                    From archive to screen in four steps
+                </p>
+
+                <!-- Timeline Container -->
+                <div class="relative space-y-16 sm:space-y-24 md:space-y-48">
+                    <!-- Vertical Line (Desktop: center, Mobile: left-6) -->
+                    <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-border-timeline"></div>
+
+                    <!-- Step 1 - Authentic Audio (LEFT side on desktop) -->
+                    <div class="relative pl-16 md:pl-0 md:pr-[calc(50%+64px)] md:text-right timeline-step from-left" data-step="1">
+                        <span class="text-primary text-xs sm:text-sm tracking-wider uppercase font-semibold">STEP 1</span>
+                        <h3 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2 mb-4">
+                            Authentic audio
+                        </h3>
+                        <p class="text-text-muted text-base sm:text-lg md:text-xl leading-relaxed max-w-xl md:ml-auto">
+                            We start with original Supreme Court recordings from the National Archives — the same audio preserved in the Oyez Project's 9,000+ hour archive.
+                        </p>
+                        <!-- Timeline Dot -->
+                        <div class="timeline-dot absolute left-6 md:left-1/2 top-8 w-4 h-4 bg-white border-2 border-white rounded-full -translate-x-1/2" data-dot="1"></div>
+                    </div>
+
+                    <!-- Step 2 - AI Reconstruction (RIGHT side on desktop) -->
+                    <div class="relative pl-16 md:pr-0 md:pl-[calc(50%+64px)] md:text-left timeline-step from-right" data-step="2">
+                        <span class="text-primary text-xs sm:text-sm tracking-wider uppercase font-semibold">STEP 2</span>
+                        <h3 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2 mb-4">
+                            AI reconstruction
+                        </h3>
+                        <p class="text-text-muted text-base sm:text-lg md:text-xl leading-relaxed max-w-xl">
+                            Using artificial intelligence, we transform audio into video — recreating the courtroom scene with historically accurate visual representations.
+                        </p>
+                        <!-- Timeline Dot -->
+                        <div class="timeline-dot absolute left-6 md:left-1/2 top-8 w-4 h-4 bg-white border-2 border-white rounded-full -translate-x-1/2" data-dot="2"></div>
+                    </div>
+
+                    <!-- Step 3 - Source Verification (LEFT side on desktop) -->
+                    <div class="relative pl-16 md:pl-0 md:pr-[calc(50%+64px)] md:text-right timeline-step from-left" data-step="3">
+                        <span class="text-primary text-xs sm:text-sm tracking-wider uppercase font-semibold">STEP 3</span>
+                        <h3 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2 mb-4">
+                            Source verification
+                        </h3>
+                        <p class="text-text-muted text-base sm:text-lg md:text-xl leading-relaxed max-w-xl md:ml-auto">
+                            Every element is documented and traceable. Original audio is never altered. AI-generated visuals are clearly identified.
+                        </p>
+                        <!-- Timeline Dot -->
+                        <div class="timeline-dot absolute left-6 md:left-1/2 top-8 w-4 h-4 bg-white border-2 border-white rounded-full -translate-x-1/2" data-dot="3"></div>
+                    </div>
+
+                    <!-- Step 4 - Immersive Experience (RIGHT side on desktop) -->
+                    <div class="relative pl-16 md:pr-0 md:pl-[calc(50%+64px)] md:text-left timeline-step from-right" data-step="4">
+                        <span class="text-primary text-xs sm:text-sm tracking-wider uppercase font-semibold">STEP 4</span>
+                        <h3 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mt-2 mb-4">
+                            Immersive experience
+                        </h3>
+                        <p class="text-text-muted text-base sm:text-lg md:text-xl leading-relaxed max-w-xl">
+                            The result: a new way to witness Supreme Court history — accessible to everyone, not just the few who can attend in person.
+                        </p>
+                        <!-- Timeline Dot -->
+                        <div class="timeline-dot absolute left-6 md:left-1/2 top-8 w-4 h-4 bg-white border-2 border-white rounded-full -translate-x-1/2" data-dot="4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CASES SECTION ==================== -->
+        <section id="cases" class="py-16 sm:py-20 md:py-32 lg:py-40 bg-background-alternate">
+            <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Accordion -->
+                    <div class="divide-y divide-black/10">
+
+                        <!-- Case 1 - Trump v. United States (Open by default) -->
+                        <div class="accordion-item" data-accordion>
+                            <button class="accordion-trigger w-full py-6 md:py-8 lg:py-10 flex items-start justify-between text-left" aria-expanded="true">
+                                <div>
+                                    <h3 class="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase">
+                                        Trump v. United States
+                                    </h3>
+                                    <span class="text-text-secondary text-sm sm:text-base md:text-lg mt-1 block">2024</span>
+                                </div>
+                                <span class="accordion-icon flex-shrink-0 ml-4 mt-2">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content open" style="max-height: 500px;">
+                                <div class="pb-6 md:pb-8 lg:pb-10 pr-12">
+                                    <p class="text-text-primary text-base sm:text-lg md:text-xl leading-relaxed mb-4">
+                                        The Court ruled that U.S. presidents have absolute immunity from prosecution when carrying out their core constitutional powers and presumptive immunity for carrying out other official acts. Actions that may be illegal and are beyond the scope of presidential powers can still be prosecuted.
+                                    </p>
+                                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-primary text-sm font-medium hover:underline transition-all">
+                                        Watch on YouTube
+                                        <span class="ml-1">→</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Case 2 - Students for Fair Admissions v. Harvard -->
+                        <div class="accordion-item" data-accordion>
+                            <button class="accordion-trigger w-full py-6 md:py-8 lg:py-10 flex items-start justify-between text-left" aria-expanded="false">
+                                <div>
+                                    <h3 class="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase">
+                                        Students for Fair Admissions v. Harvard
+                                    </h3>
+                                    <span class="text-text-secondary text-sm sm:text-base md:text-lg mt-1 block">2023</span>
+                                </div>
+                                <span class="accordion-icon flex-shrink-0 ml-4 mt-2">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12M6 12h12"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="pb-6 md:pb-8 lg:pb-10 pr-12">
+                                    <p class="text-text-primary text-base sm:text-lg md:text-xl leading-relaxed mb-4">
+                                        The Court ruled that race-conscious admissions programs at Harvard and the University of North Carolina violate the Equal Protection Clause. Universities cannot use race as a factor in admissions decisions to achieve student body diversity. Applicants may still discuss how their racial background shaped their experiences in personal essays.
+                                    </p>
+                                    <span class="text-primary text-sm font-semibold uppercase">
+                                        Coming Soon
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Case 3 - Dobbs v. Jackson Women's Health Organization -->
+                        <div class="accordion-item border-b border-black/10" data-accordion>
+                            <button class="accordion-trigger w-full py-6 md:py-8 lg:py-10 flex items-start justify-between text-left" aria-expanded="false">
+                                <div>
+                                    <h3 class="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary uppercase">
+                                        Dobbs v. Jackson Women's Health Organization
+                                    </h3>
+                                    <span class="text-text-secondary text-sm sm:text-base md:text-lg mt-1 block">2022</span>
+                                </div>
+                                <span class="accordion-icon flex-shrink-0 ml-4 mt-2">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12M6 12h12"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="pb-6 md:pb-8 lg:pb-10 pr-12">
+                                    <p class="text-text-primary text-base sm:text-lg md:text-xl leading-relaxed mb-4">
+                                        The Court ruled that the U.S. Constitution does not confer a right to abortion, overturning Roe v. Wade and Planned Parenthood v. Casey. The authority to regulate abortion was returned to the states and their elected representatives. Each state can now permit, restrict, or ban abortion as its citizens decide.
+                                    </p>
+                                    <span class="text-primary text-sm font-semibold uppercase">
+                                        Coming Soon
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TEAM SECTION ==================== -->
+        <section id="team" class="py-16 sm:py-20 md:py-32 lg:py-40 bg-white">
+            <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                <!-- Section Title -->
+                <h2 class="font-display section-title text-text-primary text-center mb-12 md:mb-16">
+                    THE TEAM
+                </h2>
+
+                <!-- Team Grid: Single column mobile, 2 columns desktop -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
+                    <!-- Left: Team Members List -->
+                    <div>
+                        <!-- Member 1 - Jerry Goldman (Active by default) -->
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer"
+                             data-team data-image="assets/jerry.png" data-active="true">
+                            <button class="w-full text-left py-5 sm:py-6">
+                                <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">
+                                    Jerry Goldman
+                                </h3>
+                                <p class="text-text-secondary text-sm sm:text-base md:text-lg">
+                                    Oyez Project Founder, Professor Emeritus, Northwestern University
+                                </p>
+                            </button>
+                            <!-- Expanded Bio -->
+                            <div class="team-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 384px; padding-bottom: 24px;">
+                                <p class="text-text-primary text-base sm:text-lg leading-relaxed">
+                                    Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Member 2 - Tim Johnson -->
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer"
+                             data-team data-image="assets/tim.png">
+                            <button class="w-full text-left py-5 sm:py-6">
+                                <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">
+                                    Tim Johnson
+                                </h3>
+                                <p class="text-text-secondary text-sm sm:text-base md:text-lg">
+                                    Academic Co-Lead, University of Minnesota
+                                </p>
+                            </button>
+                            <!-- Expanded Bio -->
+                            <div class="team-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; padding-bottom: 0;">
+                                <p class="text-text-primary text-base sm:text-lg leading-relaxed">
+                                    Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Member 3 - Spooler -->
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer"
+                             data-team data-image="assets/spooler.png">
+                            <button class="w-full text-left py-5 sm:py-6">
+                                <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">
+                                    Spooler
+                                </h3>
+                                <p class="text-text-secondary text-sm sm:text-base md:text-lg">
+                                    Technical Lead
+                                </p>
+                            </button>
+                            <!-- Expanded Bio -->
+                            <div class="team-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; padding-bottom: 0;">
+                                <p class="text-text-primary text-base sm:text-lg leading-relaxed">
+                                    Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Member 4 - Idib Group -->
+                        <div class="team-member border-t border-b border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer"
+                             data-team data-image="assets/idib.png">
+                            <button class="w-full text-left py-5 sm:py-6">
+                                <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">
+                                    Idib Group
+                                </h3>
+                                <p class="text-text-secondary text-sm sm:text-base md:text-lg">
+                                    Experience Design
+                                </p>
+                            </button>
+                            <!-- Expanded Bio -->
+                            <div class="team-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; padding-bottom: 0;">
+                                <p class="text-text-primary text-base sm:text-lg leading-relaxed">
+                                    Jerry Goldman founded the Oyez Project, revolutionizing public access to Supreme Court oral arguments. As Professor Emeritus at Northwestern University, his groundbreaking work has made constitutional law accessible to millions worldwide through innovative digital platforms.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Team Photo (Sticky on desktop) -->
+                    <div class="mt-8 md:mt-0 md:sticky md:top-24">
+                        <div class="aspect-square w-full bg-gray-200 rounded-sm overflow-hidden">
+                            <img id="team-photo"
+                                 src="assets/jerry.png"
+                                 alt="Jerry Goldman"
+                                 class="w-full h-full object-cover transition-opacity duration-300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== NEWSLETTER SECTION ==================== -->
+        <section id="contact" class="py-16 sm:py-20 md:py-32 lg:py-40 bg-background-alternate">
+            <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+                <div class="max-w-2xl mx-auto text-center">
+                    <!-- Eyebrow -->
+                    <span class="text-text-secondary text-xs md:text-sm tracking-[0.2em] uppercase mb-4 block">
+                        Join the community
+                    </span>
+
+                    <!-- Title -->
+                    <h2 class="font-display text-[48px] sm:text-[72px] md:text-[96px] lg:text-[128px] leading-[0.9] text-text-primary mb-8 sm:mb-10 md:mb-12">
+                        LET'S CONNECT
+                    </h2>
+
+                    <!-- Newsletter Form -->
+                    <form id="newsletter-form" class="w-full" novalidate>
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch">
+                            <!-- Email Input -->
+                            <div class="relative flex-1">
+                                <label for="email-input" class="sr-only">Email address</label>
+                                <input type="email"
+                                       id="email-input"
+                                       name="email"
+                                       placeholder="Email"
+                                       required
+                                       aria-describedby="email-error"
+                                       class="w-full px-4 sm:px-6 py-3 sm:py-4 bg-transparent border border-border-input rounded-md text-sm sm:text-base text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-primary transition-colors">
+                                <!-- Error message -->
+                                <p id="email-error" class="absolute left-0 -bottom-6 text-xs text-red-600 hidden" role="alert">
+                                    Please enter a valid email address
+                                </p>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit"
+                                    class="px-8 sm:px-10 py-3 sm:py-4 bg-primary text-white text-sm sm:text-base font-medium rounded-md hover:bg-primary-hover transition-colors whitespace-nowrap">
+                                Subscribe
+                            </button>
+                        </div>
+
+                        <!-- Success message -->
+                        <p id="form-success" class="mt-4 text-sm text-green-600 hidden" role="status" aria-live="polite">
+                            Thank you for subscribing!
+                        </p>
+                    </form>
+
+                    <!-- Disclaimer -->
+                    <p class="mt-4 sm:mt-6 text-text-tertiary text-xs">
+                        Subscribe to receive updates. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-background-dark">
+        <!-- Footer Hero - Large Brand Title -->
+        <div class="py-12 sm:py-16 md:py-20 overflow-hidden">
+            <h2 class="text-center leading-none text-white whitespace-nowrap"
+                style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(112px, 20.83vw, 300px);">
+                ONTHEDOCKET
+            </h2>
+        </div>
+
+        <!-- Footer Bottom - Links & Social -->
+        <div class="bg-white">
+            <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-6 md:py-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <!-- Logo -->
+                    <div class="order-2 md:order-1">
+                        <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-6 md:h-8">
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <nav class="order-1 md:order-2 flex items-center gap-6 md:gap-8">
+                        <a href="#privacy" class="text-text-primary text-sm hover:text-primary transition-colors">
+                            Privacy Policy
+                        </a>
+                        <a href="#manifesto" class="text-text-primary text-sm hover:text-primary transition-colors">
+                            Manifesto
+                        </a>
+                    </nav>
+
+                    <!-- Social Icons -->
+                    <div class="order-3 flex items-center gap-4">
+                        <!-- Email -->
+                        <a href="mailto:info@onthedocket.com"
+                           aria-label="Email"
+                           class="text-text-primary hover:text-primary transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </a>
+
+                        <!-- YouTube (Outlined) -->
+                        <a href="https://youtube.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="YouTube"
+                           class="text-text-primary hover:text-primary transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <rect x="2" y="4" width="20" height="16" rx="4" ry="4"/>
+                                <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </a>
+
+                        <!-- TikTok (Outlined) -->
+                        <a href="https://tiktok.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="TikTok"
+                           class="text-text-primary hover:text-primary transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ===== HEADER SCROLL BEHAVIOR =====
+        (function() {
+            const header = document.getElementById('header');
+            let lastScrollY = 0;
+            let ticking = false;
+
+            function updateHeader() {
+                const currentScrollY = window.scrollY;
+
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    // Scrolling down - hide header
+                    header.classList.add('header-hidden');
+                } else {
+                    // Scrolling up - show header
+                    header.classList.remove('header-hidden');
+                }
+
+                lastScrollY = currentScrollY;
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
+
+        // ===== SCROLL TO SECTION =====
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+
+            if (element) {
+                const offset = 100;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ===== HERO PARALLAX EFFECT =====
+        (function() {
+            const heroImage = document.getElementById('hero-image');
+            const heroContainer = document.querySelector('.hero-container');
+            const heroImageWrapper = document.getElementById('hero-image-wrapper');
+            const heroImageContainer = document.getElementById('hero-image-container');
+            let rafId = null;
+
+            function updateParallax() {
+                if (!heroContainer || !heroImage) return;
+
+                const rect = heroContainer.getBoundingClientRect();
+                // Calculate scroll progress: 0 at start, 1 at end
+                // Scrollable range = container height - viewport height = 300vh - 100vh = 200vh
+                const scrollProgress = -rect.top / (heroContainer.offsetHeight - window.innerHeight);
+                const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
+
+                // Scale from 1.0 to 3.5 based on scroll progress (delta: 2.5)
+                const scale = 1 + (clampedProgress * 2.5);
+
+                // Apply transform directly to DOM for performance (no React re-render)
+                heroImage.style.transform = `scale3d(${scale}, ${scale}, 1)`;
+                rafId = null;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                }
+                rafId = requestAnimationFrame(updateParallax);
+            }, { passive: true });
+
+            // Initial call
+            updateParallax();
+
+            // Adjust hero image position and size for smaller viewports
+            function adjustHeroForViewport() {
+                if (!heroImageWrapper || !heroImageContainer) return;
+
+                if (window.innerHeight <= 900) {
+                    // Shorter viewports: offset image slightly down, reduce max-width
+                    heroImageWrapper.style.top = 'calc(50% + 10px)';
+                    heroImageContainer.style.maxWidth = '1080px';
+                } else {
+                    // Taller viewports: centered, full width
+                    heroImageWrapper.style.top = '50%';
+                    heroImageContainer.style.maxWidth = '1200px';
+                }
+            }
+
+            adjustHeroForViewport();
+            window.addEventListener('resize', adjustHeroForViewport, { passive: true });
+        })();
+
+        // ===== TIMELINE ANIMATION =====
+        (function() {
+            const steps = document.querySelectorAll('.timeline-step');
+            const dots = document.querySelectorAll('.timeline-dot');
+            let rafId = null;
+
+            function checkSteps() {
+                const windowHeight = window.innerHeight;
+                let activeStepIndex = -1;
+
+                steps.forEach((step, index) => {
+                    const rect = step.getBoundingClientRect();
+
+                    // Trigger visibility animation when step is 20% into viewport from bottom
+                    if (rect.top < windowHeight * 0.8) {
+                        step.classList.add('visible');
+                    }
+
+                    // Active zone: 40%-60% of viewport (center of screen)
+                    const isInActiveZone = rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4;
+
+                    if (isInActiveZone) {
+                        activeStepIndex = index;
+                    }
+                });
+
+                // Update dot states - only one dot active at a time
+                dots.forEach((dot, index) => {
+                    if (index === activeStepIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+
+                rafId = null;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                }
+                rafId = requestAnimationFrame(checkSteps);
+            }, { passive: true });
+
+            // Initial check
+            checkSteps();
+        })();
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        (function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        })();
+
+        // ===== CASES ACCORDION =====
+        (function() {
+            const accordionItems = document.querySelectorAll('[data-accordion]');
+            const plusIcon = 'M12 6v12M6 12h12';
+            const closeIcon = 'M6 18L18 6M6 6l12 12';
+
+            accordionItems.forEach(item => {
+                const trigger = item.querySelector('.accordion-trigger');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon svg path');
+
+                trigger.addEventListener('click', function() {
+                    const isOpen = content.classList.contains('open');
+
+                    // Close all other accordions
+                    accordionItems.forEach(otherItem => {
+                        const otherContent = otherItem.querySelector('.accordion-content');
+                        const otherIcon = otherItem.querySelector('.accordion-icon svg path');
+                        const otherTrigger = otherItem.querySelector('.accordion-trigger');
+
+                        if (otherItem !== item && otherContent.classList.contains('open')) {
+                            otherContent.classList.remove('open');
+                            otherContent.style.maxHeight = '0';
+                            otherIcon.setAttribute('d', plusIcon);
+                            otherTrigger.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current accordion
+                    if (isOpen) {
+                        content.classList.remove('open');
+                        content.style.maxHeight = '0';
+                        icon.setAttribute('d', plusIcon);
+                        trigger.setAttribute('aria-expanded', 'false');
+                    } else {
+                        content.classList.add('open');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.setAttribute('d', closeIcon);
+                        trigger.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        })();
+
+        // ===== TEAM ACCORDION =====
+        (function() {
+            const teamMembers = document.querySelectorAll('[data-team]');
+            const teamPhoto = document.getElementById('team-photo');
+
+            // Extract member name from image path for alt text
+            function getMemberName(imagePath) {
+                const names = {
+                    'assets/jerry.png': 'Jerry Goldman',
+                    'assets/tim.png': 'Tim Johnson',
+                    'assets/spooler.png': 'Spooler',
+                    'assets/idib.png': 'Idib Group'
+                };
+                return names[imagePath] || 'Team member';
+            }
+
+            teamMembers.forEach(member => {
+                member.addEventListener('click', function() {
+                    const isActive = this.getAttribute('data-active') === 'true';
+
+                    // Toggle behavior: if clicking active member, close it
+                    if (isActive) {
+                        const content = this.querySelector('.team-content');
+                        this.setAttribute('data-active', 'false');
+                        content.style.maxHeight = '0';
+                        content.style.paddingBottom = '0';
+                        return;
+                    }
+
+                    const newImage = this.getAttribute('data-image');
+
+                    // Fade out current image, then swap
+                    teamPhoto.style.opacity = '0';
+                    setTimeout(() => {
+                        teamPhoto.src = newImage;
+                        teamPhoto.alt = getMemberName(newImage);
+                        teamPhoto.style.opacity = '1';
+                    }, 150);
+
+                    // Close all other team member contents
+                    teamMembers.forEach(otherMember => {
+                        const otherContent = otherMember.querySelector('.team-content');
+                        otherMember.setAttribute('data-active', 'false');
+                        otherContent.style.maxHeight = '0';
+                        otherContent.style.paddingBottom = '0';
+                    });
+
+                    // Open this member's content
+                    const content = this.querySelector('.team-content');
+                    this.setAttribute('data-active', 'true');
+                    content.style.maxHeight = '384px';
+                    content.style.paddingBottom = '24px';
+                });
+            });
+        })();
+
+        // ===== NEWSLETTER FORM VALIDATION =====
+        (function() {
+            const form = document.getElementById('newsletter-form');
+            const emailInput = document.getElementById('email-input');
+            const errorMessage = document.getElementById('email-error');
+            const successMessage = document.getElementById('form-success');
+
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            function validateEmail(email) {
+                return emailRegex.test(email.trim());
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.classList.remove('hidden');
+                emailInput.classList.add('border-red-500', 'focus:ring-red-500');
+                emailInput.classList.remove('border-border-input', 'focus:ring-primary');
+                successMessage.classList.add('hidden');
+            }
+
+            function hideError() {
+                errorMessage.classList.add('hidden');
+                emailInput.classList.remove('border-red-500', 'focus:ring-red-500');
+                emailInput.classList.add('border-border-input', 'focus:ring-primary');
+            }
+
+            function showSuccess() {
+                successMessage.classList.remove('hidden');
+                emailInput.value = '';
+                hideError();
+            }
+
+            // Real-time validation on input
+            emailInput.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    hideError();
+                } else if (!validateEmail(this.value)) {
+                    showError('Please enter a valid email address');
+                } else {
+                    hideError();
+                }
+            });
+
+            // Validation on blur
+            emailInput.addEventListener('blur', function() {
+                if (this.value.trim() !== '' && !validateEmail(this.value)) {
+                    showError('Please enter a valid email address');
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+
+                // Check if empty
+                if (email === '') {
+                    showError('Email is required');
+                    emailInput.focus();
+                    return;
+                }
+
+                // Check if valid email
+                if (!validateEmail(email)) {
+                    showError('Please enter a valid email address');
+                    emailInput.focus();
+                    return;
+                }
+
+                // Success - in production, you would send this to your backend
+                showSuccess();
+
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            });
+        })();
+    </script>
+</body>
+</html>
