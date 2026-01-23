@@ -364,16 +364,7 @@
         const validate = (email) => EMAIL_REGEX.test(email.trim());
 
         DOM.emailInput.addEventListener('input', function() {
-            const val = this.value.trim();
-            if (val === '') hideError();
-            else if (!validate(val)) showError('Please enter a valid email address');
-            else hideError();
-        });
-
-        DOM.emailInput.addEventListener('blur', function() {
-            if (this.value.trim() && !validate(this.value)) {
-                showError('Please enter a valid email address');
-            }
+            hideError();
         });
 
         DOM.newsletterForm.addEventListener('submit', function(e) {
