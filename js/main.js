@@ -18,7 +18,8 @@
         newsletterForm: document.getElementById('newsletter-form'),
         emailInput: document.getElementById('email-input'),
         emailError: document.getElementById('email-error'),
-        formSuccess: document.getElementById('form-success')
+        formSuccess: document.getElementById('form-success'),
+        utmSourceField: document.getElementById('utm-source-field')
     };
 
     // Shared state
@@ -339,13 +340,17 @@
         if (!DOM.newsletterForm || !DOM.emailInput) return;
 
         const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const MAILCHIMP_URL = 'https://onthedocket.us5.list-manage.com/subscribe/post-json?u=8c75b0cc8cae0cf3c07c96b5c&id=ad82bba080&f_id=00948be0f0';
+
+        // Get utm_source from URL
+        const params = new URLSearchParams(window.location.search);
+        const utmSource = params.get('utm_source') || '';
 
         const showError = (msg) => {
             DOM.emailError.textContent = msg;
             DOM.emailError.classList.remove('hidden');
             DOM.emailInput.classList.add('border-red-500');
             DOM.emailInput.classList.remove('border-border-input');
-            DOM.formSuccess.classList.add('hidden');
         };
 
         const hideError = () => {
@@ -358,14 +363,58 @@
             DOM.formSuccess.classList.remove('hidden');
             DOM.emailInput.value = '';
             hideError();
-            setTimeout(() => DOM.formSuccess.classList.add('hidden'), 3000);
+            setTimeout(() => DOM.formSuccess.classList.add('hidden'), 5000);
         };
 
         const validate = (email) => EMAIL_REGEX.test(email.trim());
 
-        DOM.emailInput.addEventListener('input', function() {
-            hideError();
-        });
+        const submitToMailchimp = (email) => {
+            const callbackName = 'mc_callback_' + Date.now();
+            const script = document.createElement('script');
+
+            // Build URL with EMAIL and SOURCE
+            let url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}&c=${callbackName}`;
+            if (utmSource) {
+                url += `&SOURCE=${encodeURIComponent(utmSource)}`;
+            }
+
+            window[callbackName] = function(response) {
+                delete window[callbackName];
+                if (script.parentNode) script.parentNode.removeChild(script);
+
+                if (response.result === 'success') {
+                    showSuccess();
+                } else {
+                    // Clean up Mailchimp error messages
+                    let errorMsg = response.msg || 'Subscription failed. Please try again.';
+
+                    // Remove HTML tags and "0 -" prefix
+                    errorMsg = errorMsg.replace(/<[^>]*>/g, '').replace(/^\d+\s*-\s*/, '');
+
+                    // Translate common errors
+                    if (errorMsg.toLowerCase().includes('already subscribed')) {
+                        errorMsg = 'This email is already subscribed.';
+                    } else if (errorMsg.toLowerCase().includes('invalid') || errorMsg.toLowerCase().includes('looks fake')) {
+                        errorMsg = 'Please enter a valid email address.';
+                    } else if (errorMsg.toLowerCase().includes('too many')) {
+                        errorMsg = 'Too many attempts. Please try again later.';
+                    }
+
+                    showError(errorMsg);
+                }
+            };
+
+            script.src = url;
+            script.onerror = function() {
+                delete window[callbackName];
+                if (script.parentNode) script.parentNode.removeChild(script);
+                showError('Connection error. Please try again.');
+            };
+
+            document.body.appendChild(script);
+        };
+
+        DOM.emailInput.addEventListener('input', hideError);
 
         DOM.newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -383,7 +432,7 @@
                 return;
             }
 
-            showSuccess();
+            submitToMailchimp(email);
         });
     }
 
