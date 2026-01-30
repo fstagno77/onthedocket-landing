@@ -287,9 +287,15 @@
         const members = document.querySelectorAll('[data-team]');
         if (!members.length || !DOM.teamPhoto) return;
 
+        const ICONS = {
+            plus: 'M12 6v12M6 12h12',
+            close: 'M6 18L18 6M6 6l12 12'
+        };
+
         const MEMBER_NAMES = {
             'assets/jerry': 'Jerry Goldman',
             'assets/tim': 'Tim Johnson',
+            'assets/ryan': 'Ryan Black',
             'assets/spooler': 'Spooler',
             'assets/idib': 'Idib Group'
         };
@@ -298,11 +304,13 @@
             member.addEventListener('click', function() {
                 const isActive = this.getAttribute('data-active') === 'true';
                 const content = this.querySelector('.team-content');
+                const icon = this.querySelector('.team-icon svg path');
 
                 if (isActive) {
                     this.setAttribute('data-active', 'false');
                     content.style.maxHeight = '0';
                     content.style.paddingBottom = '0';
+                    if (icon) icon.setAttribute('d', ICONS.plus);
                     return;
                 }
 
@@ -324,12 +332,15 @@
                     m.setAttribute('data-active', 'false');
                     m.querySelector('.team-content').style.maxHeight = '0';
                     m.querySelector('.team-content').style.paddingBottom = '0';
+                    const otherIcon = m.querySelector('.team-icon svg path');
+                    if (otherIcon) otherIcon.setAttribute('d', ICONS.plus);
                 });
 
                 // Open current
                 this.setAttribute('data-active', 'true');
                 content.style.maxHeight = '384px';
                 content.style.paddingBottom = '24px';
+                if (icon) icon.setAttribute('d', ICONS.close);
             });
         });
     }
