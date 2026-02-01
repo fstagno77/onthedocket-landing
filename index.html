@@ -446,6 +446,34 @@
         </section>
     </main>
 
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; display: none; opacity: 0; transition: opacity 0.3s ease;">
+        <!-- Overlay -->
+        <div id="modal-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);"></div>
+        <!-- Modal Content -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+            <div id="modal-content" style="position: relative; background: white; border-radius: 12px; max-width: 600px; width: calc(100% - 48px); padding: 48px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: translateY(100px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease;">
+                <!-- Close X Button -->
+                <button id="modal-close-x" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;">
+                    <svg style="width: 28px; height: 28px; color: #999;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <!-- Success Icon -->
+                <div style="width: 96px; height: 96px; margin: 0 auto 36px; border-radius: 50%; background: #dcfce7; display: flex; align-items: center; justify-content: center;">
+                    <svg style="width: 48px; height: 48px; color: #16a34a;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h3 style="font-size: 36px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">Thank you for subscribing!</h3>
+                <p style="color: #666; margin-bottom: 36px; font-size: 18px;">We'll keep you updated on the latest from On The Docket.</p>
+                <button id="modal-close-btn" style="padding: 16px 48px; background: #c41e3a; color: white; font-size: 16px; font-weight: 500; border: none; border-radius: 8px; cursor: pointer;">
+                    Ok
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER (rendered by components.js) -->
     <div id="footer-container"></div>
 

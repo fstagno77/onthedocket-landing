@@ -19,7 +19,11 @@
         emailInput: document.getElementById('email-input'),
         emailError: document.getElementById('email-error'),
         formSuccess: document.getElementById('form-success'),
-        utmSourceField: document.getElementById('utm-source-field')
+        utmSourceField: document.getElementById('utm-source-field'),
+        successModal: document.getElementById('success-modal'),
+        modalOverlay: document.getElementById('modal-overlay'),
+        modalContent: document.getElementById('modal-content'),
+        modalCloseBtn: document.getElementById('modal-close-btn')
     };
 
     // Shared state
@@ -370,12 +374,50 @@
             DOM.emailInput.classList.add('border-border-input');
         };
 
+        const openModal = () => {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            if (!modal || !content) return;
+            modal.style.display = 'block';
+            // Trigger animation after display
+            requestAnimationFrame(() => {
+                modal.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+                content.style.opacity = '1';
+            });
+        };
+
+        const closeModal = () => {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            if (!modal || !content) return;
+            modal.style.opacity = '0';
+            content.style.transform = 'translateY(100px)';
+            content.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        };
+
+        // Close X button
+        const closeX = document.getElementById('modal-close-x');
+        if (closeX) {
+            closeX.addEventListener('click', closeModal);
+        }
+
         const showSuccess = () => {
-            DOM.formSuccess.classList.remove('hidden');
             DOM.emailInput.value = '';
             hideError();
-            setTimeout(() => DOM.formSuccess.classList.add('hidden'), 5000);
+            openModal();
         };
+
+        // Modal close events
+        if (DOM.modalCloseBtn) {
+            DOM.modalCloseBtn.addEventListener('click', closeModal);
+        }
+        if (DOM.modalOverlay) {
+            DOM.modalOverlay.addEventListener('click', closeModal);
+        }
 
         const validate = (email) => EMAIL_REGEX.test(email.trim());
 
