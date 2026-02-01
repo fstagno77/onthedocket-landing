@@ -357,9 +357,9 @@
         const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const MAILCHIMP_URL = 'https://onthedocket.us5.list-manage.com/subscribe/post-json?u=8c75b0cc8cae0cf3c07c96b5c&id=ad82bba080&f_id=00948be0f0';
 
-        // Get utm_source from URL
+        // Get utm_source from URL, default to 'direct' if not present
         const params = new URLSearchParams(window.location.search);
-        const utmSource = params.get('utm_source') || '';
+        const utmSource = params.get('utm_source') || 'direct';
 
         const showError = (msg) => {
             DOM.emailError.textContent = msg;
@@ -426,10 +426,7 @@
             const script = document.createElement('script');
 
             // Build URL with EMAIL and SOURCE
-            let url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}&c=${callbackName}`;
-            if (utmSource) {
-                url += `&SOURCE=${encodeURIComponent(utmSource)}`;
-            }
+            const url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}&c=${callbackName}&SOURCE=${encodeURIComponent(utmSource)}`;
 
             window[callbackName] = function(response) {
                 delete window[callbackName];
