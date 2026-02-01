@@ -80,9 +80,12 @@
 
     // ==================== HERO PARALLAX ====================
 
+    // Media query for mobile detection (avoids forced reflow from window.innerWidth)
+    const mobileMediaQuery = window.matchMedia('(max-width: 767px)');
+
     function initHeroParallax() {
         // Skip parallax on mobile (< 768px) - mobile has static layout
-        if (window.innerWidth < 768) return;
+        if (mobileMediaQuery.matches) return;
 
         if (!DOM.heroContainer || !DOM.heroImage) return;
 
