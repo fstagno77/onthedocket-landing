@@ -82,8 +82,8 @@
             <footer class="bg-background-dark">
                 <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-6 md:py-8">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                        <a href="index.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.7 92.8" class="h-6 md:h-8 w-auto" fill="white">
+                        <a href="index.html" aria-label="On The Docket Home">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.7 92.8" class="h-6 md:h-8 w-auto" fill="white" aria-hidden="true">
                                 <polygon points="83.8 0 72 0 67.6 0 55.8 0 55.8 4.5 67.6 4.5 67.6 92.7 72 92.7 72 4.5 83.8 4.5 83.8 0"/>
                                 <polygon points="105.2 0 105.2 44.1 91.3 44.1 91.3 0 86.8 0 86.8 92.7 91.3 92.7 91.3 48.6 105.2 48.6 105.2 92.7 109.7 92.7 109.7 0 105.2 0"/>
                                 <path d="M13.9,0C6.3,0,.2,6.2,.2,13.7v65.3c0,7.5,6.1,13.7,13.7,13.7s13.7-6.1,13.7-13.7V13.7C27.5,6.2,21.4,0,13.9,0ZM23.1,79.1c0,5.1-4.1,9.2-9.2,9.2s-9.2-4.1-9.2-9.2V13.8c0-5.1,4.1-9.2,9.2-9.2s9.2,4.1,9.2,9.2v65.3Z"/>
