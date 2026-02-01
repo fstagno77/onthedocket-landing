@@ -23,8 +23,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Preload Tailwind CSS -->
+    <!-- Preload critical resources (starts download early, reduces chain latency) -->
     <link rel="preload" href="css/tailwind.css" as="style">
+    <link rel="preload" href="js/components.js" as="script">
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" media="print" onload="this.media='all'">

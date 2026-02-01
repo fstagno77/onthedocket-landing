@@ -26,8 +26,9 @@
     <!-- Preload LCP image with high priority (WebP for modern browsers) -->
     <link rel="preload" href="assets/image_hero.webp" as="image" type="image/webp" fetchpriority="high">
 
-    <!-- Preload Tailwind CSS (starts download early, reduces chain latency) -->
+    <!-- Preload critical resources (starts download early, reduces chain latency) -->
     <link rel="preload" href="css/tailwind.css" as="style">
+    <link rel="preload" href="js/components.js" as="script">
 
     <!-- Google Fonts - non-blocking load with display=swap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" media="print" onload="this.media='all'">
