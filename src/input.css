@@ -2,6 +2,8 @@
 
 /* Scan HTML files for class usage */
 @source "../index.html";
+@source "../manifesto.html";
+@source "../privacy.html";
 @source "../js/components.js";
 
 /* Custom theme configuration */

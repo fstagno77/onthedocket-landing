@@ -16,7 +16,7 @@
             const navPrefix = isHome ? '' : 'index.html';
 
             return `
-            <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white header-transition header-at-top">
+            <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white header-transition ${isHome ? 'header-at-top' : ''}">
                 <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
                     <div class="header-inner flex items-center justify-between py-4 md:py-6">
                         <a href="${logoLink}" class="h-8 md:h-10 block">
@@ -126,7 +126,7 @@
             </footer>
             <div class="bg-primary py-3 text-center">
                 <a href="https://brown.oyez.org/" target="_blank" rel="noopener noreferrer" class="text-white text-xs sm:text-sm hover:underline px-4">
-                    From the producers of <strong>Brown Revisited</strong>
+                    From the producers of <strong>Brown Revisited</strong><span class="hidden sm:inline"> — a landmark satisfying reimagined with AI-generated voices</span>
                 </a>
             </div>
         `
@@ -251,6 +251,35 @@
         });
     }
 
+    // ==================== HEADER SCROLL (for non-home pages) ====================
+
+    function initHeaderScroll() {
+        const header = document.getElementById('header');
+        if (!header) return;
+
+        const SCROLL_THRESHOLD = 50;
+        let lastScrollY = 0;
+        let ticking = false;
+
+        const updateHeader = () => {
+            const currentScrollY = window.scrollY;
+            const isAtTop = currentScrollY < SCROLL_THRESHOLD;
+            const isScrollingDown = currentScrollY > lastScrollY;
+            const shouldHide = !isAtTop && isScrollingDown;
+
+            header.classList.toggle('header-hidden', shouldHide);
+            lastScrollY = currentScrollY;
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
     // ==================== PUBLIC API ====================
 
     window.OTDComponents = {
@@ -259,7 +288,8 @@
         footer: Components.footer,
         render: renderComponent,
         insert: insertComponent,
-        initNewsletter: initNewsletterForm
+        initNewsletter: initNewsletterForm,
+        initHeaderScroll: initHeaderScroll
     };
 
 })();
