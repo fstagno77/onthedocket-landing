@@ -135,6 +135,18 @@ body {
     transform: translateY(-100%);
 }
 
+/* Desktop only: minimal header when at top (centered logo, no nav/CTA) */
+@media (min-width: 768px) {
+    .header-at-top .header-inner {
+        justify-content: center;
+    }
+
+    .header-at-top .header-nav,
+    .header-at-top .header-cta {
+        display: none;
+    }
+}
+
 /* Accordion */
 .accordion-content {
     max-height: 0;

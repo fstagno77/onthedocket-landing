@@ -52,9 +52,18 @@
     function initHeader() {
         if (!DOM.header) return;
 
+        const SCROLL_THRESHOLD = 50;
+
         const updateHeader = () => {
             const currentScrollY = window.scrollY;
-            DOM.header.classList.toggle('header-hidden', currentScrollY > state.lastScrollY && currentScrollY > 100);
+            const isAtTop = currentScrollY < SCROLL_THRESHOLD;
+            const isScrollingDown = currentScrollY > state.lastScrollY;
+            const shouldHide = !isAtTop && isScrollingDown;
+
+            // Keep header-at-top when hiding to prevent flash of full header during transition
+            // Full header only shows when scrolling UP and past the threshold
+            DOM.header.classList.toggle('header-at-top', isAtTop || shouldHide);
+            DOM.header.classList.toggle('header-hidden', shouldHide);
             state.lastScrollY = currentScrollY;
             state.headerTicking = false;
         };
