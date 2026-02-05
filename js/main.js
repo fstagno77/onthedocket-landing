@@ -300,11 +300,11 @@
         };
 
         const MEMBER_NAMES = {
-            'assets/jerry': 'Jerry Goldman',
-            'assets/tim': 'Tim Johnson',
-            'assets/ryan': 'Ryan Black',
-            'assets/spooler': 'Spooler',
-            'assets/idib': 'Idib Group'
+            'assets/images/jerry': 'Jerry Goldman',
+            'assets/images/tim': 'Tim Johnson',
+            'assets/images/ryan': 'Ryan Black',
+            'assets/images/spooler': 'Spooler',
+            'assets/images/idib': 'Idib Group'
         };
 
         members.forEach(member => {

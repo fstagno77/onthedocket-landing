@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Preload LCP image with high priority (WebP for modern browsers) -->
-    <link rel="preload" href="assets/image_hero.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="assets/images/image_hero.webp" as="image" type="image/webp" fetchpriority="high">
 
     <!-- Preload critical resources (starts download early, reduces chain latency) -->
     <link rel="preload" href="css/tailwind.css" as="style">
@@ -49,8 +49,8 @@
             <div class="flex items-center justify-between py-4 md:py-6">
                 <a href="#hero" class="h-8 md:h-10 block">
                     <picture>
-                        <source srcset="assets/logo.webp" type="image/webp">
-                        <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-full w-auto" width="120" height="40" loading="eager">
+                        <source srcset="assets/images/logo.webp" type="image/webp">
+                        <img src="assets/images/logo.png" alt="ONTHEDOCKET" class="h-full w-auto" width="120" height="40" loading="eager">
                     </picture>
                 </a>
                 <nav class="hidden md:flex items-center gap-10">
@@ -78,22 +78,13 @@
                     EXPERIENCE THE SUPREME COURT LIKE NEVER BEFORE
                 </h1>
 
-                <!-- Hero Image (static, full width) -->
+                <!-- Hero Video (static, full width) -->
                 <div class="hero-image-mobile w-full">
-                    <picture>
-                        <source
-                            type="image/webp"
-                            srcset="assets/image_hero-sm.webp 480w,
-                                    assets/image_hero-md.webp 800w"
-                            sizes="100vw">
-                        <img src="assets/image_hero-md.webp"
-                             alt="Supreme Court Justices illustration"
-                             class="w-full h-auto rounded-lg"
-                             fetchpriority="high"
-                             decoding="async"
-                             width="800"
-                             height="437">
-                    </picture>
+                    <video class="w-full h-auto rounded-lg"
+                           autoplay muted loop playsinline
+                           poster="assets/images/image_hero-md.webp">
+                        <source src="assets/video/otd-trailer-smartphone.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
 
@@ -106,29 +97,16 @@
                     </h1>
                 </div>
 
-                <!-- Hero Image -->
+                <!-- Hero Video -->
                 <div id="hero-image-wrapper" class="hero-image-wrapper">
                     <div class="hero-image-box">
-                        <picture>
-                            <source
-                                type="image/webp"
-                                srcset="assets/image_hero-sm.webp 480w,
-                                        assets/image_hero-md.webp 800w,
-                                        assets/image_hero-lg.webp 1200w,
-                                        assets/image_hero.webp 2238w"
-                                sizes="(max-width: 480px) 100vw,
-                                       (max-width: 768px) 100vw,
-                                       (max-width: 1200px) 90vw,
-                                       1200px">
-                            <img id="hero-image"
-                                 src="assets/image_hero.webp"
-                                 alt="Supreme Court Justices illustration"
-                                 class="parallax-image"
-                                 fetchpriority="high"
-                                 decoding="async"
-                                 width="2238"
-                                 height="1222">
-                        </picture>
+                        <video id="hero-image"
+                               class="parallax-image"
+                               autoplay muted loop playsinline
+                               poster="assets/images/image_hero.webp">
+                            <source src="assets/video/otd-trailer.webm" type="video/webm">
+                            <source src="assets/video/otd-trailer.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
 
@@ -296,7 +274,7 @@
                     <!-- Team Members List (order-2 on mobile so photo shows first) -->
                     <div class="order-2 md:order-1">
                         <!-- Member 1 -->
-                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/jerry" data-active="true">
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/images/jerry" data-active="true">
                             <button class="w-full text-left py-5 sm:py-6 flex items-center justify-between">
                                 <div>
                                     <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Jerry Goldman</h3>
@@ -316,7 +294,7 @@
                         </div>
 
                         <!-- Member 2 -->
-                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/tim">
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/images/tim">
                             <button class="w-full text-left py-5 sm:py-6 flex items-center justify-between">
                                 <div>
                                     <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Timothy R. Johnson</h3>
@@ -338,7 +316,7 @@
                             </div>
                         </div>
                         <!-- Member 3 -->
-                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/spooler">
+                        <div class="team-member border-t border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/images/spooler">
                             <button class="w-full text-left py-5 sm:py-6 flex items-center justify-between">
                                 <div>
                                     <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Spooler</h3>
@@ -361,7 +339,7 @@
                         </div>
 
                         <!-- Member 5 -->
-                        <div class="team-member border-t border-b border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/idib">
+                        <div class="team-member border-t border-b border-[rgba(26,26,26,0.2)] hover:opacity-70 transition-opacity cursor-pointer" data-team data-image="assets/images/idib">
                             <button class="w-full text-left py-5 sm:py-6 flex items-center justify-between">
                                 <div>
                                     <h3 class="text-xl sm:text-2xl md:text-3xl text-text-primary mb-1">Idib Group</h3>
@@ -388,8 +366,8 @@
                     <div class="order-1 md:order-2 mt-0 mb-4 md:mb-0 md:mt-0 md:sticky md:top-24">
                         <div class="aspect-square w-full bg-gray-200 rounded-sm overflow-hidden">
                             <picture>
-                                <source id="team-photo-source" srcset="assets/jerry.webp" type="image/webp">
-                                <img id="team-photo" src="assets/jerry.png" alt="Jerry Goldman" class="w-full h-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" width="500" height="500">
+                                <source id="team-photo-source" srcset="assets/images/jerry.webp" type="image/webp">
+                                <img id="team-photo" src="assets/images/jerry.png" alt="Jerry Goldman" class="w-full h-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" width="500" height="500">
                             </picture>
                         </div>
                     </div>

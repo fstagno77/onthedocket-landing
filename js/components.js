@@ -21,8 +21,8 @@
                     <div class="flex items-center justify-between py-4 md:py-6">
                         <a href="${logoLink}" class="h-8 md:h-10 block">
                             <picture>
-                                <source srcset="assets/logo.webp" type="image/webp">
-                                <img src="assets/logo.png" alt="ONTHEDOCKET" class="h-full w-auto" width="120" height="40" loading="eager">
+                                <source srcset="assets/images/logo.webp" type="image/webp">
+                                <img src="assets/images/logo.png" alt="ONTHEDOCKET" class="h-full w-auto" width="120" height="40" loading="eager">
                             </picture>
                         </a>
                         <nav class="hidden md:flex items-center gap-10">
