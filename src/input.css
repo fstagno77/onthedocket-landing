@@ -2,6 +2,7 @@
 
 /* Scan HTML files for class usage */
 @source "../index.html";
+@source "../js/components.js";
 
 /* Custom theme configuration */
 @theme {

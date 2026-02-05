@@ -124,6 +124,11 @@
                     </div>
                 </div>
             </footer>
+            <div class="bg-primary py-3 text-center">
+                <a href="https://brown.oyez.org/" target="_blank" rel="noopener noreferrer" class="text-white text-xs sm:text-sm hover:underline px-4">
+                    From the producers of <strong>Brown Revisited</strong> — a landmark case reimagined with AI-generated voices
+                </a>
+            </div>
         `
     };
 
