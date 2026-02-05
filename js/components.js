@@ -81,65 +81,42 @@
         footer: () => `
             <footer class="bg-background-dark">
                 <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-6 md:py-8">
-                    <div class="flex flex-col gap-4 md:gap-0">
-                        <!-- Row 1: logo + links (mobile: left/right, desktop: part of single row) -->
-                        <div class="flex items-center justify-between md:justify-between">
-                            <a href="index.html" aria-label="On The Docket Home">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.7 92.8" class="h-6 md:h-8 w-auto" fill="white" aria-hidden="true">
-                                    <polygon points="83.8 0 72 0 67.6 0 55.8 0 55.8 4.5 67.6 4.5 67.6 92.7 72 92.7 72 4.5 83.8 4.5 83.8 0"/>
-                                    <polygon points="105.2 0 105.2 44.1 91.3 44.1 91.3 0 86.8 0 86.8 92.7 91.3 92.7 91.3 48.6 105.2 48.6 105.2 92.7 109.7 92.7 109.7 0 105.2 0"/>
-                                    <path d="M13.9,0C6.3,0,.2,6.2,.2,13.7v65.3c0,7.5,6.1,13.7,13.7,13.7s13.7-6.1,13.7-13.7V13.7C27.5,6.2,21.4,0,13.9,0ZM23.1,79.1c0,5.1-4.1,9.2-9.2,9.2s-9.2-4.1-9.2-9.2V13.8c0-5.1,4.1-9.2,9.2-9.2s9.2,4.1,9.2,9.2v65.3Z"/>
-                                    <polygon points="52.8 0 48.3 0 48.3 62 38 0 33.4 0 33.4 92.7 37.8 92.7 37.8 30.6 48.1 92.7 52.8 92.7 52.8 0"/>
-                                    <polygon points="132.8 5.1 132.8 0 119.9 0 116.2 0 115.5 0 115.5 92.7 116.2 92.7 119.9 92.7 132.8 92.7 132.8 87.6 119.9 87.6 119.9 48.8 129.4 48.8 129.4 43.7 119.9 43.7 119.9 5.1 132.8 5.1"/>
-                                    <path d="M156.8,0h-18.2v92.7h18.2c6.7,0,12.1-5.4,12.1-12.1V12.1c0-6.7-5.4-12.1-12.1-12.1ZM160,78.9c0,2.6-2.1,4.8-4.8,4.8h-7.7V8.9h7.7c2.6,0,4.8,2.1,4.8,4.8v65.2Z"/>
-                                    <path d="M189.9-.2c-8.4,0-15.2,6.8-15.2,15.2v62.3c0,8.4,6.8,15.2,15.2,15.2s15.2-6.8,15.2-15.2V15c0-8.4-6.8-15.2-15.2-15.2ZM196.1,77.3c0,3.4-2.8,6.2-6.2,6.2s-6.2-2.8-6.2-6.2V14.9c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2v62.4Z"/>
-                                    <path d="M232.3,55.3v22.3c0,3.4-2.8,6.2-6.2,6.2s-6.2-2.8-6.2-6.2V15.2c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2v22.2h8.9V15.2c0-8.4-6.8-15.2-15.2-15.2s-15.2,6.8-15.2,15.2v62.3c0,8.4,6.8,15.2,15.2,15.2s15.2-6.8,15.2-15.2v-22.2h-8.9Z"/>
-                                    <polygon points="331.7 0 322.2 0 313.2 0 303.7 0 303.7 8.9 313.2 8.9 313.2 92.7 322.2 92.7 322.2 8.9 331.7 8.9 331.7 0"/>
-                                    <polygon points="300.7 8.9 300.7 0 287.9 0 279 0 279 8.9 279 40.5 279 49.4 279 83.8 279 92.7 279 92.7 300.7 92.7 300.7 83.8 287.9 83.8 287.9 49.4 296.4 49.4 296.4 40.5 287.9 40.5 287.9 8.9 300.7 8.9"/>
-                                    <polygon points="273.2 0 264.6 0 255.9 46.3 255.9 0 247 0 247 92.7 255.9 92.7 255.9 46.3 264.6 92.7 273.2 92.7 264.6 46.3 273.2 0"/>
-                                </svg>
-                            </a>
+                    <div class="flex items-center justify-between">
+                        <a href="index.html" aria-label="On The Docket Home">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.7 92.8" class="h-5 md:h-8 w-auto" fill="white" aria-hidden="true">
+                                <polygon points="83.8 0 72 0 67.6 0 55.8 0 55.8 4.5 67.6 4.5 67.6 92.7 72 92.7 72 4.5 83.8 4.5 83.8 0"/>
+                                <polygon points="105.2 0 105.2 44.1 91.3 44.1 91.3 0 86.8 0 86.8 92.7 91.3 92.7 91.3 48.6 105.2 48.6 105.2 92.7 109.7 92.7 109.7 0 105.2 0"/>
+                                <path d="M13.9,0C6.3,0,.2,6.2,.2,13.7v65.3c0,7.5,6.1,13.7,13.7,13.7s13.7-6.1,13.7-13.7V13.7C27.5,6.2,21.4,0,13.9,0ZM23.1,79.1c0,5.1-4.1,9.2-9.2,9.2s-9.2-4.1-9.2-9.2V13.8c0-5.1,4.1-9.2,9.2-9.2s9.2,4.1,9.2,9.2v65.3Z"/>
+                                <polygon points="52.8 0 48.3 0 48.3 62 38 0 33.4 0 33.4 92.7 37.8 92.7 37.8 30.6 48.1 92.7 52.8 92.7 52.8 0"/>
+                                <polygon points="132.8 5.1 132.8 0 119.9 0 116.2 0 115.5 0 115.5 92.7 116.2 92.7 119.9 92.7 132.8 92.7 132.8 87.6 119.9 87.6 119.9 48.8 129.4 48.8 129.4 43.7 119.9 43.7 119.9 5.1 132.8 5.1"/>
+                                <path d="M156.8,0h-18.2v92.7h18.2c6.7,0,12.1-5.4,12.1-12.1V12.1c0-6.7-5.4-12.1-12.1-12.1ZM160,78.9c0,2.6-2.1,4.8-4.8,4.8h-7.7V8.9h7.7c2.6,0,4.8,2.1,4.8,4.8v65.2Z"/>
+                                <path d="M189.9-.2c-8.4,0-15.2,6.8-15.2,15.2v62.3c0,8.4,6.8,15.2,15.2,15.2s15.2-6.8,15.2-15.2V15c0-8.4-6.8-15.2-15.2-15.2ZM196.1,77.3c0,3.4-2.8,6.2-6.2,6.2s-6.2-2.8-6.2-6.2V14.9c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2v62.4Z"/>
+                                <path d="M232.3,55.3v22.3c0,3.4-2.8,6.2-6.2,6.2s-6.2-2.8-6.2-6.2V15.2c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2v22.2h8.9V15.2c0-8.4-6.8-15.2-15.2-15.2s-15.2,6.8-15.2,15.2v62.3c0,8.4,6.8,15.2,15.2,15.2s15.2-6.8,15.2-15.2v-22.2h-8.9Z"/>
+                                <polygon points="331.7 0 322.2 0 313.2 0 303.7 0 303.7 8.9 313.2 8.9 313.2 92.7 322.2 92.7 322.2 8.9 331.7 8.9 331.7 0"/>
+                                <polygon points="300.7 8.9 300.7 0 287.9 0 279 0 279 8.9 279 40.5 279 49.4 279 83.8 279 92.7 279 92.7 300.7 92.7 300.7 83.8 287.9 83.8 287.9 49.4 296.4 49.4 296.4 40.5 287.9 40.5 287.9 8.9 300.7 8.9"/>
+                                <polygon points="273.2 0 264.6 0 255.9 46.3 255.9 0 247 0 247 92.7 255.9 92.7 255.9 46.3 264.6 92.7 273.2 92.7 264.6 46.3 273.2 0"/>
+                            </svg>
+                        </a>
 
-                            <nav class="flex items-center gap-4 md:gap-8">
-                                <a href="privacy.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Privacy Policy</a>
-                                <a href="manifesto.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Manifesto</a>
-                            </nav>
+                        <nav class="flex items-center gap-3 md:gap-8">
+                            <a href="privacy.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Privacy Policy</a>
+                            <a href="manifesto.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Manifesto</a>
+                        </nav>
 
-                            <div class="hidden md:flex items-center gap-4">
-                                <a href="mailto:contact@onthedocket.org" aria-label="Email" class="text-white hover:text-primary transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </a>
-                                <a href="https://www.youtube.com/@OnTheDocket-SCOTUS" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white hover:text-primary transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                        <rect x="2" y="4" width="20" height="16" rx="4" ry="4"/>
-                                        <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
-                                    </svg>
-                                </a>
-                                <a href="https://www.tiktok.com/@onthedocket.scotus" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white hover:text-primary transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Row 2: social icons centered (mobile only) -->
-                        <div class="flex md:hidden items-center justify-center gap-4">
+                        <div class="flex items-center gap-3 md:gap-4">
                             <a href="mailto:contact@onthedocket.org" aria-label="Email" class="text-white hover:text-primary transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
                             </a>
                             <a href="https://www.youtube.com/@OnTheDocket-SCOTUS" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white hover:text-primary transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                                     <rect x="2" y="4" width="20" height="16" rx="4" ry="4"/>
                                     <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
                                 </svg>
                             </a>
                             <a href="https://www.tiktok.com/@onthedocket.scotus" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white hover:text-primary transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </a>
