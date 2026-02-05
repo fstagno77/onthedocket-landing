@@ -81,7 +81,7 @@
         footer: () => `
             <footer class="bg-background-dark">
                 <div class="max-w-container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-6 md:py-8">
-                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex flex-col md:flex-row items-center md:justify-between gap-4 md:gap-6">
                         <a href="index.html" aria-label="On The Docket Home">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.7 92.8" class="h-6 md:h-8 w-auto" fill="white" aria-hidden="true">
                                 <polygon points="83.8 0 72 0 67.6 0 55.8 0 55.8 4.5 67.6 4.5 67.6 92.7 72 92.7 72 4.5 83.8 4.5 83.8 0"/>
@@ -98,35 +98,37 @@
                             </svg>
                         </a>
 
-                        <nav class="flex items-center gap-6 md:gap-8">
-                            <a href="privacy.html" class="text-white text-sm hover:text-primary transition-colors">Privacy Policy</a>
-                            <a href="manifesto.html" class="text-white text-sm hover:text-primary transition-colors">Manifesto</a>
-                        </nav>
+                        <div class="flex items-center justify-between w-full md:w-auto md:contents">
+                            <nav class="flex items-center gap-4 md:gap-8">
+                                <a href="privacy.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Privacy Policy</a>
+                                <a href="manifesto.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Manifesto</a>
+                            </nav>
 
-                        <div class="flex items-center gap-4">
-                            <a href="mailto:contact@onthedocket.org" aria-label="Email" class="text-white hover:text-primary transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.youtube.com/@OnTheDocket-SCOTUS" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white hover:text-primary transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                    <rect x="2" y="4" width="20" height="16" rx="4" ry="4"/>
-                                    <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.tiktok.com/@onthedocket.scotus" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white hover:text-primary transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+                            <div class="flex items-center gap-4">
+                                <a href="mailto:contact@onthedocket.org" aria-label="Email" class="text-white hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.youtube.com/@OnTheDocket-SCOTUS" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                        <rect x="2" y="4" width="20" height="16" rx="4" ry="4"/>
+                                        <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.tiktok.com/@onthedocket.scotus" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white hover:text-primary transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </footer>
             <div class="bg-primary py-3 text-center">
                 <a href="https://brown.oyez.org/" target="_blank" rel="noopener noreferrer" class="text-white text-xs sm:text-sm hover:underline px-4">
-                    From the producers of <strong>Brown Revisited</strong> — a landmark case reimagined with AI-generated voices
+                    From the producers of <strong>Brown Revisited</strong>
                 </a>
             </div>
         `
