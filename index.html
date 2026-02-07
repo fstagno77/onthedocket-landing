@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PMHHMWZ6');</script>
+    <!-- Google Tag Manager (deferred: loads on first interaction or after 3.5s) -->
+    <script>window.dataLayer=window.dataLayer||[];(function(){var l=false;function g(){if(l)return;l=true;(function(w,d,s,i){w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','GTM-PMHHMWZ6');}['scroll','click','touchstart'].forEach(function(e){window.addEventListener(e,g,{once:true,passive:true});});setTimeout(g,3500);})();</script>
     <!-- End Google Tag Manager -->
 
     <meta charset="UTF-8">
@@ -38,12 +34,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Preload LCP image with high priority (WebP for modern browsers) -->
-    <link rel="preload" href="assets/images/image_hero.webp" as="image" type="image/webp" fetchpriority="high">
+    <!-- Preload LCP image: mobile poster on small screens, desktop on large -->
+    <link rel="preload" href="assets/images/image_hero-md.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 767px)">
+    <link rel="preload" href="assets/images/image_hero.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 768px)">
 
-    <!-- Preload critical resources (starts download early, reduces chain latency) -->
+    <!-- Preload critical CSS -->
     <link rel="preload" href="css/tailwind.css" as="style">
-    <link rel="preload" href="js/components.js" as="script">
 
     <!-- Google Fonts - non-blocking load with display=optional (prevents CLS from font swap) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=optional" media="print" onload="this.media='all'">
