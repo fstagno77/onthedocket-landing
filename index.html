@@ -28,11 +28,8 @@
     <meta name="twitter:description" content="We transform audio recordings into compelling video narratives using AI technology.">
     <meta name="twitter:image" content="https://onthedocket.org/assets/images/mini_banner.png">
 
-    <!-- DNS Prefetch + Preconnect to external origins (reduce connection latency) -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload critical font (self-hosted, no external dependency) -->
+    <link rel="preload" href="assets/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Preload LCP image: mobile poster on small screens, desktop on large -->
     <link rel="preload" href="assets/images/image_hero-md.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 767px)">
@@ -40,10 +37,6 @@
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="css/tailwind.css" as="style">
-
-    <!-- Google Fonts - non-blocking load with display=optional (prevents CLS from font swap) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=optional" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=optional"></noscript>
 
     <!-- Tailwind CSS (production build) -->
     <link rel="stylesheet" href="css/tailwind.css">
