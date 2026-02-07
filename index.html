@@ -45,9 +45,9 @@
     <link rel="preload" href="css/tailwind.css" as="style">
     <link rel="preload" href="js/components.js" as="script">
 
-    <!-- Google Fonts - non-blocking load with display=swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"></noscript>
+    <!-- Google Fonts - non-blocking load with display=optional (prevents CLS from font swap) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=optional" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=optional"></noscript>
 
     <!-- Tailwind CSS (production build) -->
     <link rel="stylesheet" href="css/tailwind.css">
@@ -97,7 +97,8 @@
                 <div class="hero-image-mobile w-full">
                     <video class="w-full h-auto rounded-lg"
                            autoplay muted loop playsinline
-                           poster="assets/images/image_hero-md.webp">
+                           poster="assets/images/image_hero-md.webp"
+                           width="800" height="450">
                         <source src="assets/video/otd-trailer-smartphone.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -118,7 +119,8 @@
                         <video id="hero-image"
                                class="parallax-image"
                                autoplay muted loop playsinline
-                               poster="assets/images/image_hero.webp">
+                               poster="assets/images/image_hero.webp"
+                               width="2238" height="1259">
                             <source src="assets/video/otd-trailer.webm" type="video/webm">
                             <source src="assets/video/otd-trailer.mp4" type="video/mp4">
                         </video>
