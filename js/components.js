@@ -126,7 +126,7 @@
             </footer>
             <div class="bg-primary py-3 text-center">
                 <a href="https://brown.oyez.org/" target="_blank" rel="noopener noreferrer" class="text-white text-xs sm:text-sm hover:underline px-4">
-                    From the producers of <strong>Brown Revisited</strong><span class="hidden sm:inline"> — a landmark satisfying reimagined with AI-generated voices</span>
+                    From the producers of <strong>Brown Revisited</strong><span class="hidden sm:inline"> — a landmark decision reimagined with AI-generated voices</span>
                 </a>
             </div>
         `
