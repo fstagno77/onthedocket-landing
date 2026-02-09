@@ -310,7 +310,7 @@
 
         const MEMBER_NAMES = {
             'assets/images/jerry': 'Jerry Goldman',
-            'assets/images/tim': 'Tim Johnson',
+            'assets/images/tim': 'Timothy R. Johnson',
             'assets/images/ryan': 'Ryan Black',
             'assets/images/spooler': 'Spooler',
             'assets/images/idib': 'Idib Group'

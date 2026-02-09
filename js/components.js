@@ -27,11 +27,11 @@
                         </a>
                         <nav class="header-nav hidden md:flex items-center gap-10">
                             ${isHome ? `
-                            <button onclick="scrollToSection('about')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">About</button>
+                            <button onclick="scrollToSection('mission')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Mission</button>
                             <button onclick="scrollToSection('cases')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Cases</button>
                             <button onclick="scrollToSection('team')" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Team</button>
                             ` : `
-                            <a href="${navPrefix}#about" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">About</a>
+                            <a href="${navPrefix}#mission" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Mission</a>
                             <a href="${navPrefix}#cases" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Cases</a>
                             <a href="${navPrefix}#team" class="text-[15px] font-normal text-text-primary hover:text-primary transition-colors">Team</a>
                             `}
@@ -100,7 +100,7 @@
 
                         <nav class="flex items-center gap-3 md:gap-8">
                             <a href="privacy.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Privacy Policy</a>
-                            <a href="manifesto.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">Manifesto</a>
+                            <a href="about.html" class="text-white text-xs sm:text-sm hover:text-primary transition-colors">About</a>
                         </nav>
 
                         <div class="flex items-center gap-3 md:gap-4">
