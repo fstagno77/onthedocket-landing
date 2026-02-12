@@ -120,6 +120,11 @@
                                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </a>
+                            <a href="https://x.com/on_the_docket" target="_blank" rel="noopener noreferrer" aria-label="X" class="text-white hover:text-primary transition-colors">
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
